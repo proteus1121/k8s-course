@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: echo-server
+  labels:
+    app: echo-server
+spec:
+  containers:
+  - image: ealen/echo-server:latest
+    env:
+      - name: USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: secret-vars
+            key: username
+      - name: PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: secret-vars
+            key: password
+    name: echo-server
