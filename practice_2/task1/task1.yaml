@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: base-limitrange
+spec:
+  limits:
+    - defaultRequest:
+        cpu: "250m"
+        memory: "512Mi"
+      default:
+        cpu: "250m"
+        memory: "512Mi"
+      max:
+        cpu: "250m"
+        memory: "512Mi"
+      type: Container
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-overlimit
+  labels:
+    app: nginx
+spec:
+  containers:
+    - image: nginx:latest
+      ports:
+          - containerPort: 80
+      name: nginx
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1024Mi
+        limits:
+          cpu: 500m
+          memory: 1024Mi
