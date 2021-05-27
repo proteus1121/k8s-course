@@ -1,0 +1,25 @@
+1. Pod troubleshooting
+    - Deploy resources to the cluster
+    - What happened with the Pod?
+    - Provide screenshot with Pod logs
+    - Provide screenshot with Pod events
+    - Provide screenshot with the root cause of Pod fail? (can be found in 2 places)
+    - Cleanup resources
+2. Service troubleshooting
+    - Deploy resources to the cluster
+    - Wait loadbalancer created and try to access service
+    - Check configuration and fix the issue
+        - check pod running and serves requests
+        - check service is connected to the pod/pods and endpoints exist
+        - check service serves requests
+        - check LB address is resolved to the IP
+    - Provide screenshot of successfull response
+    - Cleanup resources
+3. Container troubleshooting
+    - Deploy resources to the cluster
+    - Verify Pods failing
+    - Check deployment configuration and fix the issue with the potential typo
+        - check which container fails
+        - check container logs
+    - Provide screenshot of the logs of the fixed container
+    - Cleanup resources
