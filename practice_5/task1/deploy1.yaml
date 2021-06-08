@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-v1
+  labels:
+    app: nginx
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: nginx
+        version: v1
+    spec:
+      containers:
+      - image: public.ecr.aws/nginx/nginx:latest
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        resources:
+          limits:
+            cpu: 50m
+            memory: 50Mi
+        volumeMounts:
+        - name: web
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web
+          configMap:
+            name: index-v1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-v2
+  labels:
+    app: nginx
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: nginx
+        version: v2
+    spec:
+      containers:
+      - image: public.ecr.aws/nginx/nginx:latest
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        resources:
+          limits:
+            cpu: 50m
+            memory: 50Mi
+        volumeMounts:
+        - name: web
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web
+          configMap:
+            name: index-v2

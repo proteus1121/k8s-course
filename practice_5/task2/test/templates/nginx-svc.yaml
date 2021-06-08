@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-{{ .Values.app.version }}
+spec:
+  selector:
+    app: nginx-{{ .Values.app.version }}
+    version: {{ .Values.app.version }}
+  ports:
+    - protocol: TCP
+      port: 80
